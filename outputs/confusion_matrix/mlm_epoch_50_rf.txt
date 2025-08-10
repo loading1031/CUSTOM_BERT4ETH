@@ -1,0 +1,142 @@
+threshold = 0.1
+3156.0
+              precision    recall  f1-score   support
+
+           0     0.9965    0.9866    0.9915    185711
+           1     0.2123    0.5103    0.2998      1313
+
+    accuracy                         0.9833    187024
+   macro avg     0.6044    0.7484    0.6457    187024
+weighted avg     0.9910    0.9833    0.9867    187024
+
+threshold = 0.15
+1944.0
+              precision    recall  f1-score   support
+
+           0     0.9960    0.9926    0.9943    185711
+           1     0.2978    0.4410    0.3555      1313
+
+    accuracy                         0.9888    187024
+   macro avg     0.6469    0.7168    0.6749    187024
+weighted avg     0.9911    0.9888    0.9899    187024
+
+threshold = 0.2
+1303.0
+              precision    recall  f1-score   support
+
+           0     0.9955    0.9956    0.9955    185711
+           1     0.3676    0.3648    0.3662      1313
+
+    accuracy                         0.9911    187024
+   macro avg     0.6816    0.6802    0.6809    187024
+weighted avg     0.9911    0.9911    0.9911    187024
+
+threshold = 0.25
+898.0
+              precision    recall  f1-score   support
+
+           0     0.9951    0.9973    0.9962    185711
+           1     0.4421    0.3024    0.3591      1313
+
+    accuracy                         0.9924    187024
+   macro avg     0.7186    0.6498    0.6777    187024
+weighted avg     0.9912    0.9924    0.9917    187024
+
+threshold = 0.3
+633.0
+              precision    recall  f1-score   support
+
+           0     0.9947    0.9983    0.9965    185711
+           1     0.5024    0.2422    0.3268      1313
+
+    accuracy                         0.9930    187024
+   macro avg     0.7485    0.6202    0.6617    187024
+weighted avg     0.9912    0.9930    0.9918    187024
+
+threshold = 0.35
+470.0
+              precision    recall  f1-score   support
+
+           0     0.9943    0.9988    0.9966    185711
+           1     0.5383    0.1927    0.2838      1313
+
+    accuracy                         0.9932    187024
+   macro avg     0.7663    0.5958    0.6402    187024
+weighted avg     0.9911    0.9932    0.9916    187024
+
+threshold = 0.4
+351.0
+              precision    recall  f1-score   support
+
+           0     0.9941    0.9992    0.9967    185711
+           1     0.5954    0.1592    0.2512      1313
+
+    accuracy                         0.9933    187024
+   macro avg     0.7948    0.5792    0.6239    187024
+weighted avg     0.9913    0.9933    0.9914    187024
+
+threshold = 0.45
+286.0
+              precision    recall  f1-score   support
+
+           0     0.9939    0.9994    0.9967    185711
+           1     0.6364    0.1386    0.2276      1313
+
+    accuracy                         0.9934    187024
+   macro avg     0.8152    0.5690    0.6122    187024
+weighted avg     0.9914    0.9934    0.9913    187024
+
+threshold = 0.5
+221.0
+              precision    recall  f1-score   support
+
+           0     0.9938    0.9996    0.9967    185711
+           1     0.6878    0.1158    0.1982      1313
+
+    accuracy                         0.9934    187024
+   macro avg     0.8408    0.5577    0.5974    187024
+weighted avg     0.9916    0.9934    0.9911    187024
+
+threshold = 0.55
+186.0
+              precision    recall  f1-score   support
+
+           0     0.9937    0.9997    0.9967    185711
+           1     0.6935    0.0982    0.1721      1313
+
+    accuracy                         0.9934    187024
+   macro avg     0.8436    0.5490    0.5844    187024
+weighted avg     0.9916    0.9934    0.9909    187024
+
+threshold = 0.6
+157.0
+              precision    recall  f1-score   support
+
+           0     0.9936    0.9997    0.9966    185711
+           1     0.7006    0.0838    0.1497      1313
+
+    accuracy                         0.9933    187024
+   macro avg     0.8471    0.5418    0.5732    187024
+weighted avg     0.9915    0.9933    0.9907    187024
+
+threshold = 0.65
+115.0
+              precision    recall  f1-score   support
+
+           0     0.9935    0.9999    0.9967    185711
+           1     0.7913    0.0693    0.1275      1313
+
+    accuracy                         0.9933    187024
+   macro avg     0.8924    0.5346    0.5621    187024
+weighted avg     0.9920    0.9933    0.9906    187024
+
+threshold = 0.7
+73.0
+              precision    recall  f1-score   support
+
+           0     0.9933    1.0000    0.9966    185711
+           1     0.8904    0.0495    0.0938      1313
+
+    accuracy                         0.9933    187024
+   macro avg     0.9419    0.5247    0.5452    187024
+weighted avg     0.9926    0.9933    0.9903    187024
