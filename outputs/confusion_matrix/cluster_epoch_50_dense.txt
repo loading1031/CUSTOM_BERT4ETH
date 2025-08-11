@@ -1,0 +1,66 @@
+(bert4ether) owner@DESKTOP-C7AMPUM:~/workspace/NEW_BERT2_phishing/eval$  python phish_detection_mlp.py --input_dir=../outputs/cluster_epoch_50
+(436387, 64)
+(187024, 64)
+  0%|                                                                                                            | 0/1705 [00:00<?, ?it/s]/home/owner/workspace/NEW_BERT2_phishing/eval/phish_detection_mlp.py:52: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  X_batch = torch.tensor(X_batch).to(self.device)
+/home/owner/workspace/NEW_BERT2_phishing/eval/phish_detection_mlp.py:53: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  y_batch = torch.tensor(y_batch).to(self.device)
+Epoch 0, loss 0.031 : 100%|██████████████████████████████████████████████████████████████████████████| 1705/1705 [00:04<00:00, 390.22it/s]
+Epoch 1, loss 0.120 : 100%|██████████████████████████████████████████████████████████████████████████| 1705/1705 [00:04<00:00, 372.87it/s]
+(187024,)
+threshold = 0.1
+1809.0
+              precision    recall  f1-score   support
+
+           0     0.9948    0.9924    0.9936    185662
+           1     0.2178    0.2893    0.2485      1362
+
+    accuracy                         0.9873    187024
+   macro avg     0.6063    0.6408    0.6210    187024
+weighted avg     0.9891    0.9873    0.9881    187024
+
+threshold = 0.15
+973.0
+              precision    recall  f1-score   support
+
+           0     0.9942    0.9963    0.9952    185662
+           1     0.2857    0.2041    0.2381      1362
+
+    accuracy                         0.9905    187024
+   macro avg     0.6399    0.6002    0.6167    187024
+weighted avg     0.9890    0.9905    0.9897    187024
+
+threshold = 0.2
+427.0
+              precision    recall  f1-score   support
+
+           0     0.9936    0.9986    0.9961    185662
+           1     0.3934    0.1233    0.1878      1362
+
+    accuracy                         0.9922    187024
+   macro avg     0.6935    0.5610    0.5920    187024
+weighted avg     0.9892    0.9922    0.9902    187024
+
+threshold = 0.25
+13.0
+              precision    recall  f1-score   support
+
+           0     0.9928    1.0000    0.9964    185662
+           1     0.6923    0.0066    0.0131      1362
+
+    accuracy                         0.9927    187024
+   macro avg     0.8425    0.5033    0.5047    187024
+weighted avg     0.9906    0.9927    0.9892    187024
+
+threshold = 0.3
+3.0
+              precision    recall  f1-score   support
+
+           0     0.9927    1.0000    0.9963    185662
+           1     0.6667    0.0015    0.0029      1362
+
+    accuracy                         0.9927    187024
+   macro avg     0.8297    0.5007    0.4996    187024
+weighted avg     0.9904    0.9927    0.9891    187024
+
+== 이후 threshold에서는 피싱계좌 예측 못함 ==

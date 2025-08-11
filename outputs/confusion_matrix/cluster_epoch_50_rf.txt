@@ -1,0 +1,146 @@
+(bert4ether) owner@DESKTOP-C7AMPUM:~/workspace/NEW_BERT2_phishing/eval$  python phish_detection_rf.py --input_dir=../outputs/cluster_epoch_50
+(436387, 64)
+(187024, 64)
+=============Precision-Recall Curve=============
+threshold = 0.1
+3397.0
+              precision    recall  f1-score   support
+
+           0     0.9962    0.9853    0.9907    185662
+           1     0.1949    0.4860    0.2782      1362
+
+    accuracy                         0.9816    187024
+   macro avg     0.5955    0.7357    0.6345    187024
+weighted avg     0.9904    0.9816    0.9855    187024
+
+threshold = 0.15
+2183.0
+              precision    recall  f1-score   support
+
+           0     0.9955    0.9911    0.9933    185662
+           1     0.2432    0.3899    0.2996      1362
+
+    accuracy                         0.9867    187024
+   macro avg     0.6194    0.6905    0.6464    187024
+weighted avg     0.9900    0.9867    0.9882    187024
+
+threshold = 0.2
+1475.0
+              precision    recall  f1-score   support
+
+           0     0.9951    0.9945    0.9948    185662
+           1     0.3017    0.3267    0.3137      1362
+
+    accuracy                         0.9896    187024
+   macro avg     0.6484    0.6606    0.6542    187024
+weighted avg     0.9900    0.9896    0.9898    187024
+
+threshold = 0.25
+1058.0
+              precision    recall  f1-score   support
+
+           0     0.9946    0.9963    0.9954    185662
+           1     0.3440    0.2673    0.3008      1362
+
+    accuracy                         0.9910    187024
+   macro avg     0.6693    0.6318    0.6481    187024
+weighted avg     0.9899    0.9910    0.9904    187024
+
+threshold = 0.3
+765.0
+              precision    recall  f1-score   support
+
+           0     0.9943    0.9975    0.9959    185662
+           1     0.3922    0.2203    0.2821      1362
+
+    accuracy                         0.9918    187024
+   macro avg     0.6932    0.6089    0.6390    187024
+weighted avg     0.9899    0.9918    0.9907    187024
+
+threshold = 0.35
+562.0
+              precision    recall  f1-score   support
+
+           0     0.9941    0.9984    0.9962    185662
+           1     0.4626    0.1909    0.2703      1362
+
+    accuracy                         0.9925    187024
+   macro avg     0.7284    0.5946    0.6332    187024
+weighted avg     0.9902    0.9925    0.9909    187024
+
+threshold = 0.4
+421.0
+              precision    recall  f1-score   support
+
+           0     0.9939    0.9989    0.9964    185662
+           1     0.5131    0.1586    0.2423      1362
+
+    accuracy                         0.9928    187024
+   macro avg     0.7535    0.5787    0.6193    187024
+weighted avg     0.9904    0.9928    0.9909    187024
+
+threshold = 0.45
+319.0
+              precision    recall  f1-score   support
+
+           0     0.9937    0.9993    0.9965    185662
+           1     0.5831    0.1366    0.2213      1362
+
+    accuracy                         0.9930    187024
+   macro avg     0.7884    0.5679    0.6089    187024
+weighted avg     0.9907    0.9930    0.9908    187024
+
+threshold = 0.5
+245.0
+              precision    recall  f1-score   support
+
+           0     0.9935    0.9995    0.9965    185662
+           1     0.6408    0.1153    0.1954      1362
+
+    accuracy                         0.9931    187024
+   macro avg     0.8172    0.5574    0.5960    187024
+weighted avg     0.9910    0.9931    0.9907    187024
+
+threshold = 0.55
+198.0
+              precision    recall  f1-score   support
+
+           0     0.9934    0.9996    0.9965    185662
+           1     0.6667    0.0969    0.1692      1362
+
+    accuracy                         0.9931    187024
+   macro avg     0.8300    0.5483    0.5829    187024
+weighted avg     0.9910    0.9931    0.9905    187024
+
+threshold = 0.6
+143.0
+              precision    recall  f1-score   support
+
+           0     0.9933    0.9998    0.9965    185662
+           1     0.7203    0.0756    0.1369      1362
+
+    accuracy                         0.9931    187024
+   macro avg     0.8568    0.5377    0.5667    187024
+weighted avg     0.9913    0.9931    0.9903    187024
+
+threshold = 0.65
+110.0
+              precision    recall  f1-score   support
+
+           0     0.9932    0.9999    0.9965    185662
+           1     0.8000    0.0646    0.1196      1362
+
+    accuracy                         0.9931    187024
+   macro avg     0.8966    0.5322    0.5580    187024
+weighted avg     0.9918    0.9931    0.9901    187024
+
+threshold = 0.7
+87.0
+              precision    recall  f1-score   support
+
+           0     0.9931    0.9999    0.9965    185662
+           1     0.8621    0.0551    0.1035      1362
+
+    accuracy                         0.9931    187024
+   macro avg     0.9276    0.5275    0.5500    187024
+weighted avg     0.9922    0.9931    0.9900    187024
