@@ -1,0 +1,118 @@
+/**
+* bert: normal, phishing 데이터만으로 학습
+* MLP: dean, tornado 등의 모든 데이터셋을 학습
+
+=> MLP를 normal, phishing만으로 학습했을 때보다 recall이 정말 낮아짐
+*/
+
+threshold = 0.1
+2674.0
+              precision    recall  f1-score   support
+
+           0     0.9954    0.9884    0.9919    188134
+           1     0.1825    0.3609    0.2424      1352
+
+    accuracy                         0.9839    189486
+   macro avg     0.5889    0.6747    0.6171    189486
+weighted avg     0.9896    0.9839    0.9865    189486
+
+threshold = 0.15
+1727.0
+              precision    recall  f1-score   support
+
+           0     0.9950    0.9930    0.9940    188134
+           1     0.2386    0.3047    0.2676      1352
+
+    accuracy                         0.9881    189486
+   macro avg     0.6168    0.6489    0.6308    189486
+weighted avg     0.9896    0.9881    0.9888    189486
+
+threshold = 0.2
+1107.0
+              precision    recall  f1-score   support
+
+           0     0.9945    0.9958    0.9951    188134
+           1     0.2809    0.2300    0.2529      1352
+
+    accuracy                         0.9903    189486
+   macro avg     0.6377    0.6129    0.6240    189486
+weighted avg     0.9894    0.9903    0.9898    189486
+
+threshold = 0.25
+704.0
+              precision    recall  f1-score   support
+
+           0     0.9941    0.9975    0.9958    188134
+           1     0.3338    0.1738    0.2286      1352
+
+    accuracy                         0.9916    189486
+   macro avg     0.6639    0.5857    0.6122    189486
+weighted avg     0.9894    0.9916    0.9903    189486
+
+threshold = 0.3
+433.0
+              precision    recall  f1-score   support
+
+           0     0.9937    0.9986    0.9962    188134
+           1     0.3926    0.1257    0.1905      1352
+
+    accuracy                         0.9924    189486
+   macro avg     0.6932    0.5622    0.5933    189486
+weighted avg     0.9895    0.9924    0.9904    189486
+
+threshold = 0.35
+247.0
+              precision    recall  f1-score   support
+
+           0     0.9935    0.9993    0.9964    188134
+           1     0.4777    0.0873    0.1476      1352
+
+    accuracy                         0.9928    189486
+   macro avg     0.7356    0.5433    0.5720    189486
+weighted avg     0.9898    0.9928    0.9903    189486
+
+threshold = 0.4
+117.0
+              precision    recall  f1-score   support
+
+           0     0.9932    0.9998    0.9965    188134
+           1     0.6154    0.0533    0.0980      1352
+
+    accuracy                         0.9930    189486
+   macro avg     0.8043    0.5265    0.5473    189486
+weighted avg     0.9905    0.9930    0.9901    189486
+
+threshold = 0.45
+53.0
+              precision    recall  f1-score   support
+
+           0     0.9931    1.0000    0.9965    188134
+           1     0.8302    0.0325    0.0626      1352
+
+    accuracy                         0.9930    189486
+   macro avg     0.9116    0.5162    0.5296    189486
+weighted avg     0.9919    0.9930    0.9898    189486
+
+threshold = 0.5
+27.0
+              precision    recall  f1-score   support
+
+           0     0.9930    1.0000    0.9965    188134
+           1     0.8519    0.0170    0.0334      1352
+
+    accuracy                         0.9930    189486
+   macro avg     0.9224    0.5085    0.5149    189486
+weighted avg     0.9920    0.9930    0.9896    189486
+
+threshold = 0.55
+1.0
+              precision    recall  f1-score   support
+
+           0     0.9929    1.0000    0.9964    188134
+           1     1.0000    0.0007    0.0015      1352
+
+    accuracy                         0.9929    189486
+   macro avg     0.9964    0.5004    0.4990    189486
+weighted avg     0.9929    0.9929    0.9893    189486
+
+=== 이후 threshold에서는 phishing 탐지 못함 ===

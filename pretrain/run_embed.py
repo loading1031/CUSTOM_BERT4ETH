@@ -35,7 +35,7 @@ def infer_embed():
     checkpoint_name = args.init_checkpoint.split("/")[0]
     model_index = str(args.init_checkpoint.split("/")[-1].split(".pth")[0])
 
-    output_dir = args.data_dir + checkpoint_name + "_" + model_index
+    output_dir = args.data_dir + checkpoint_name + "_" + model_index + "_" + args.bizdate
     os.makedirs(output_dir, exist_ok=True)
 
     embed_output_dir = os.path.join(output_dir, "embedding.npy")
