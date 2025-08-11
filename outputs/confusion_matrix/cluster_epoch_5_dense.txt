@@ -1,0 +1,133 @@
+threshold = 0.1
+4115.0
+              precision    recall  f1-score   support
+
+           0     0.9964    0.9812    0.9887    185740
+           1     0.1516    0.4860    0.2312      1284
+
+    accuracy                         0.9778    187024
+   macro avg     0.5740    0.7336    0.6099    187024
+weighted avg     0.9906    0.9778    0.9835    187024
+
+threshold = 0.15
+2325.0
+              precision    recall  f1-score   support
+
+           0     0.9956    0.9900    0.9928    185740
+           1     0.2039    0.3692    0.2627      1284
+
+    accuracy                         0.9858    187024
+   macro avg     0.5997    0.6796    0.6277    187024
+weighted avg     0.9902    0.9858    0.9878    187024
+
+threshold = 0.2
+1273.0
+              precision    recall  f1-score   support
+
+           0     0.9948    0.9949    0.9949    185740
+           1     0.2529    0.2508    0.2519      1284
+
+    accuracy                         0.9898    187024
+   macro avg     0.6239    0.6228    0.6234    187024
+weighted avg     0.9897    0.9898    0.9897    187024
+
+threshold = 0.25
+725.0
+              precision    recall  f1-score   support
+
+           0     0.9944    0.9974    0.9959    185740
+           1     0.3393    0.1916    0.2449      1284
+
+    accuracy                         0.9919    187024
+   macro avg     0.6669    0.5945    0.6204    187024
+weighted avg     0.9899    0.9919    0.9908    187024
+
+threshold = 0.3
+483.0
+              precision    recall  f1-score   support
+
+           0     0.9941    0.9984    0.9963    185740
+           1     0.3913    0.1472    0.2139      1284
+
+    accuracy                         0.9926    187024
+   macro avg     0.6927    0.5728    0.6051    187024
+weighted avg     0.9900    0.9926    0.9909    187024
+
+threshold = 0.35
+298.0
+              precision    recall  f1-score   support
+
+           0     0.9939    0.9992    0.9965    185740
+           1     0.4732    0.1098    0.1783      1284
+
+    accuracy                         0.9930    187024
+   macro avg     0.7335    0.5545    0.5874    187024
+weighted avg     0.9903    0.9930    0.9909    187024
+
+threshold = 0.4
+181.0
+              precision    recall  f1-score   support
+
+           0     0.9937    0.9996    0.9966    185740
+           1     0.5525    0.0779    0.1365      1284
+
+    accuracy                         0.9932    187024
+   macro avg     0.7731    0.5387    0.5666    187024
+weighted avg     0.9906    0.9932    0.9907    187024
+
+threshold = 0.45
+111.0
+              precision    recall  f1-score   support
+
+           0     0.9935    0.9998    0.9966    185740
+           1     0.6306    0.0545    0.1004      1284
+
+    accuracy                         0.9933    187024
+   macro avg     0.8121    0.5271    0.5485    187024
+weighted avg     0.9910    0.9933    0.9905    187024
+
+threshold = 0.5
+73.0
+              precision    recall  f1-score   support
+
+           0     0.9934    0.9999    0.9966    185740
+           1     0.6712    0.0382    0.0722      1284
+
+    accuracy                         0.9933    187024
+   macro avg     0.8323    0.5190    0.5344    187024
+weighted avg     0.9912    0.9933    0.9903    187024
+
+threshold = 0.55
+41.0
+              precision    recall  f1-score   support
+
+           0     0.9933    0.9999    0.9966    185740
+           1     0.7073    0.0226    0.0438      1284
+
+    accuracy                         0.9932    187024
+   macro avg     0.8503    0.5113    0.5202    187024
+weighted avg     0.9913    0.9932    0.9901    187024
+
+threshold = 0.6
+30.0
+              precision    recall  f1-score   support
+
+           0     0.9933    1.0000    0.9966    185740
+           1     0.9000    0.0210    0.0411      1284
+
+    accuracy                         0.9933    187024
+   macro avg     0.9466    0.5105    0.5189    187024
+weighted avg     0.9926    0.9933    0.9901    187024
+
+threshold = 0.65
+15.0
+              precision    recall  f1-score   support
+
+           0     0.9932    1.0000    0.9966    185740
+           1     0.8667    0.0101    0.0200      1284
+
+    accuracy                         0.9932    187024
+   macro avg     0.9299    0.5051    0.5083    187024
+weighted avg     0.9923    0.9932    0.9899    187024
+
+=== 0.7은 피싱 주소 예측 안됨 ==
