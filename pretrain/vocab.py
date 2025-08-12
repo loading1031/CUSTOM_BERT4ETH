@@ -3,7 +3,7 @@ class SimpleVocab:
         self.token_to_ids = {
             "[PAD]": 0,
             "[MASK]": 1,
-            "[NO_USE]": 2
+            "[CLS]": 2
         }
         self.id_to_tokens = {v: k for k, v in self.token_to_ids.items()}
         self.vocab_words = list(self.token_to_ids.keys())  # ✅ 추가
@@ -19,3 +19,6 @@ class SimpleVocab:
 
     def get_mask_id(self):
         return self.token_to_ids["[MASK]"]
+    
+    def get_cls_id(self):
+        return self.token_to_ids["[CLS]"]

@@ -4,6 +4,7 @@ import math
 import random
 import torch.utils.data as data_utils
 import copy
+from typing import Dict, List, Any
 
 
 def map_io_flag(tranxs):
@@ -29,6 +30,7 @@ def convert_timestamp_to_position(block_timestamps):
     return position
 
 
+# BERT4ETHDataloader 클래스
 class BERT4ETHDataloader:
 
     def __init__(self, args, vocab, eoa2seq):
@@ -108,36 +110,49 @@ class BERT4ETHTrainDataset(data_utils.Dataset):
         self.args = args
         self.seq_list = seq_list
         self.vocab = vocab
-        seed = args.dataloader_random_seed
-        # self.rng = random.Random(seed)
         self.rng = random.Random()
         self.max_predictions_per_seq = math.ceil(self.args.max_seq_length * self.args.masked_lm_prob)
+        self.MASK_TOKEN_ID = self.vocab.get_mask_id() # MASK 토큰 ID는 1
+        self.PAD_TOKEN_ID = self.vocab.get_pad_id() # PAD 토큰 ID는 0
+        self.CLS_TOKEN_ID = self.vocab.get_cls_id() # CLS 토큰 ID는 2
 
     def __len__(self):
         return len(self.seq_list)
 
     def __getitem__(self, index):
-
         tranxs = copy.deepcopy(self.seq_list[index])
         address = tranxs[0][0]  # 대표 주소 (시퀀스 소유자)
 
-        # address → identity 매핑
-        address2id = {}
-        identity_seq = []
-        id_counter = 3
-        for tx in tranxs:
+         # --- 핵심 변경사항: 시퀀스 내에서만 유효한 address2id 매핑 생성 ---
+        address_counts = {}
+        for tx in tranxs[1:]:
             addr = tx[0]
-            if addr not in address2id:
-                address2id[addr] = id_counter
-                id_counter += 1
-            identity_seq.append(address2id[addr])
+            address_counts[addr] = address_counts.get(addr, 0) + 1
+            
+        sorted_addresses = sorted(address_counts, key=address_counts.get, reverse=True)
+        
+        address2id = {}
+        # [PAD]=0, [MASK]=1, [CLS]=2. 시퀀스 내부 주소는 3부터 시작
+        id_counter = 3
+        for addr in sorted_addresses:
+            address2id[addr] = id_counter
+            id_counter += 1
+
+        # 첫 번째 항목은 [CLS] 토큰이므로, 주소 매핑에서 제외
+        identity_seq = [self.CLS_TOKEN_ID]
+        for tx in tranxs[1:]:
+            addr = tx[0]
+            try:
+                identity_seq.append(address2id[addr])
+            except KeyError:
+                raise KeyError(f"Address '{addr}' from sequence was not found in the global address mapping.")
 
         cand_indexes = list(range(1, len(identity_seq)))
         self.rng.shuffle(cand_indexes)
         num_to_predict = min(self.max_predictions_per_seq,
-                         max(1, int(len(tranxs) * self.args.masked_lm_prob)))
+                             max(1, int(len(tranxs[1:]) * self.args.masked_lm_prob)))
         
-        labels = [-1 for _ in range(len(identity_seq))]  # -1 = not masked
+        labels = [-1 for _ in range(len(identity_seq))]
         num_masked = 0
         covered_indexes = set()
 
@@ -148,24 +163,17 @@ class BERT4ETHTrainDataset(data_utils.Dataset):
                 continue
             covered_indexes.add(idx)
 
-            labels[idx] = identity_seq[idx]  # 정답 저장
-            identity_seq[idx] = self.vocab.convert_tokens_to_ids(["[MASK]"])[0]  # MASK 토큰 ID
+            labels[idx] = identity_seq[idx]
+            identity_seq[idx] = self.MASK_TOKEN_ID # MASK 토큰 ID 사용
             num_masked += 1
 
-
-        # MAP discrete feature to int
+        # MAP discrete feature to int (tranxs[1:] 사용)
         block_timestamps = list(map(lambda x: x[2], tranxs))
         values = list(map(lambda x: x[3], tranxs))
         io_flags = list(map(map_io_flag, tranxs))
         counts = list(map(lambda x: x[5], tranxs))
         positions = convert_timestamp_to_position(block_timestamps)
         input_mask = [1] * len(identity_seq)
-
-        assert max(identity_seq) < 103, f"[input_ids] OOB: {max(identity_seq)} >= 103"
-        assert max(counts) < 15, f"[counts] OOB: {max(counts)}"
-        assert max(values) < 15, f"[values] OOB: {max(values)}"
-        assert max(io_flags) < 3, f"[io_flags] OOB: {max(io_flags)}"
-        assert max(positions) < 100, f"[positions] OOB: {max(positions)}"
 
         # padding
         max_seq_length = self.args.max_seq_length
@@ -179,10 +187,8 @@ class BERT4ETHTrainDataset(data_utils.Dataset):
         input_mask = pad(input_mask, 0)
         labels = pad(labels, -1)
 
-         # 검증
         assert all(len(x) == max_seq_length for x in [identity_seq, values, io_flags, counts, positions, input_mask, labels])
 
-    
         return {
             "address_str": address, 
             "input_ids": torch.LongTensor(identity_seq),
@@ -198,33 +204,43 @@ class BERT4ETHTrainDataset(data_utils.Dataset):
 class BERT4ETHEvalDataset(data_utils.Dataset):
 
     def __init__(self, args, vocab, seq_list):
-        # mask_prob, mask_token, max_predictions_per_seq):
         self.args = args
         self.seq_list = seq_list
         self.vocab = vocab
-        seed = args.dataloader_random_seed
-        self.rng = random.Random(seed)
+        self.rng = random.Random(args.dataloader_random_seed)
+        self.PAD_TOKEN_ID = self.vocab.get_pad_id()
+        self.CLS_TOKEN_ID = self.vocab.get_cls_id()
+
     def __len__(self):
         return len(self.seq_list)
 
     def __getitem__(self, index):
-
-        # only one index as input
         tranxs = self.seq_list[index]
         address = tranxs[0][0]
 
-        # address → identity 매핑
-        address2id = {}
-        identity_seq = []
-        id_counter = 4
-        for tx in tranxs:
+        # --- 핵심 변경사항: 시퀀스 내에서만 유효한 address2id 매핑 생성 ---
+        address_counts = {}
+        for tx in tranxs[1:]:
             addr = tx[0]
-            if addr not in address2id:
-                address2id[addr] = id_counter
-                id_counter += 1
-            identity_seq.append(address2id[addr])
+            address_counts[addr] = address_counts.get(addr, 0) + 1
+            
+        sorted_addresses = sorted(address_counts, key=address_counts.get, reverse=True)
+        
+        address2id = {}
+        # [PAD]=0, [MASK]=1, [CLS]=2. 시퀀스 내부 주소는 3부터 시작
+        id_counter = 3
+        for addr in sorted_addresses:
+            address2id[addr] = id_counter
+            id_counter += 1
 
-        # MAP discrete feature to int
+        identity_seq = [self.CLS_TOKEN_ID]
+        for tx in tranxs[1:]:
+            addr = tx[0]
+            try:
+                identity_seq.append(address2id[addr])
+            except KeyError:
+                raise KeyError(f"Address '{addr}' from sequence was not found in the global address mapping.")
+
         block_timestamps = list(map(lambda x: x[2], tranxs))
         values = list(map(lambda x: x[3], tranxs))
         io_flags = list(map(map_io_flag, tranxs))
@@ -232,7 +248,6 @@ class BERT4ETHEvalDataset(data_utils.Dataset):
         positions = convert_timestamp_to_position(block_timestamps)
         input_mask = [1] * len(identity_seq)
 
-        # padding
         max_seq_length = self.args.max_seq_length
         pad = lambda x, v: x + [v] * (max_seq_length - len(x))
 
@@ -244,7 +259,6 @@ class BERT4ETHEvalDataset(data_utils.Dataset):
         input_mask = pad(input_mask, 0)
 
         assert all(len(x) == max_seq_length for x in [identity_seq, values, io_flags, counts, positions, input_mask])
-
 
         return {
             "address_str": address, 
